@@ -5,7 +5,8 @@
  * @format
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import * as RNLocalize from 'react-native-localize';
 import type {PropsWithChildren} from 'react';
 import {
   SafeAreaView,
@@ -24,10 +25,13 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import { setI18nConfig, translate } from './src/helpers/i18n';
 
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
+
+const LOCALIZATION_EVENT = 'change';
 
 function Section({children, title}: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -57,7 +61,16 @@ function Section({children, title}: SectionProps): JSX.Element {
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
+  setI18nConfig();
 
+  useEffect(() => {
+    // Listen for system locale changes, and update configuration accordingly.
+    RNLocalize.addEventListener(LOCALIZATION_EVENT, setI18nConfig);
+
+    return () => {
+      RNLocalize.removeEventListener(LOCALIZATION_EVENT, setI18nConfig);
+    };
+  }, []);
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
@@ -79,6 +92,7 @@ function App(): JSX.Element {
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.
+            <Text>hey - {translate('hello')} - hey</Text>
           </Section>
           <Section title="See Your Changes">
             <ReloadInstructions />
