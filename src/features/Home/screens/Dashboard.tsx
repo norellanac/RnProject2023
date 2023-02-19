@@ -15,9 +15,9 @@ import { translate } from '../../../helpers/i18n';
 import { Footer } from '../components/templates/Footer';
 import { HomeStackParams } from './HomeStack';
 
-interface Props extends StackScreenProps<HomeStackParams, 'Home'> {}
+interface Props extends StackScreenProps<HomeStackParams, 'Dashboard'> {}
 
-export const Landing = ({route, navigation}: Props) => {
+export const Dashboard = ({route, navigation}: Props) => {
   return (
     <Box alignItems="center" justifyContent="center" flex={1}>
       <Box
@@ -93,7 +93,7 @@ export const Landing = ({route, navigation}: Props) => {
                   color: 'warmGray.200',
                 }}
                 fontWeight="400">
-                {translate('hello')}
+                {translate('commons.go_home')}
               </Text>
             </HStack>
           </HStack>

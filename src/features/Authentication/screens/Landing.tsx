@@ -1,14 +1,19 @@
-import { useNavigation } from '@react-navigation/native';
+import { StackScreenProps } from '@react-navigation/stack';
+import { Box } from 'native-base';
 import React from 'react';
-import { Button, Text } from 'react-native';
+import { Button } from 'react-native';
 import { translate } from '../../../helpers/i18n';
+import { AuthStackParams } from './AuthStack';
 
-export const Landing = () => {
-  const rootNav = useNavigation();
+interface Props extends StackScreenProps<AuthStackParams, 'Landing'> {}
+
+export const Landing = ({ route, navigation }: Props) => {
   return (
-    <Button
-      onPress={() => rootNav.navigate('Login')}
-      title={translate('commons.start')}
-    />
+    <Box alignItems="center" justifyContent="center" flex={1}>
+      <Button
+        onPress={() => navigation.navigate('Login')}
+        title={translate('commons.start')}
+      />
+    </Box>
   );
 };

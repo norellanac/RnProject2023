@@ -7,17 +7,10 @@
 
 import React, { useEffect } from 'react';
 import * as RNLocalize from 'react-native-localize';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Button,
-  useColorScheme,
-  View,
-  Text,
-} from 'react-native';
-import { setI18nConfig, translate } from './src/helpers/i18n';
+import { useColorScheme } from 'react-native';
+import { setI18nConfig } from './src/helpers/i18n';
 import { RootNavigator } from './src/routes/RootNavigator';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NativeBaseProvider } from 'native-base';
 
 const LOCALIZATION_EVENT = 'change';
 
@@ -35,9 +28,9 @@ function App(): JSX.Element {
   }, []);
 
   return (
-    <SafeAreaProvider>
+    <NativeBaseProvider>
       <RootNavigator />
-    </SafeAreaProvider>
+    </NativeBaseProvider>
   );
 }
 

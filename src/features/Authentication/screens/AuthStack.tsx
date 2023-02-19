@@ -4,6 +4,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Landing } from './Landing';
 import { Login } from './Login';
 
+export type AuthStackParams = {
+  Landing: undefined;
+  Login: undefined;
+};
+
 const AuthStack = createStackNavigator();
 
 export const AuthNavigation = (): React.ReactElement => {
