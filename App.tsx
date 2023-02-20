@@ -11,11 +11,15 @@ import { useColorScheme } from 'react-native';
 import { setI18nConfig } from './src/helpers/i18n';
 import { RootNavigator } from './src/routes/RootNavigator';
 import { NativeBaseProvider } from 'native-base';
+import { useNetInfo } from '@react-native-community/netinfo';
+import { BannerConnection } from './src/components/organisms';
 
 const LOCALIZATION_EVENT = 'change';
 
 function App(): JSX.Element {
+  const { isConnected, isInternetReachable } = useNetInfo();
   const isDarkMode = useColorScheme() === 'dark';
+
   setI18nConfig();
 
   useEffect(() => {
@@ -29,7 +33,10 @@ function App(): JSX.Element {
 
   return (
     <NativeBaseProvider>
-      <RootNavigator />
+      <>
+        {!isConnected && <BannerConnection />}
+        <RootNavigator />
+      </>
     </NativeBaseProvider>
   );
 }

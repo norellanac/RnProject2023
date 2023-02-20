@@ -27,7 +27,9 @@
         "view_more": "Ver más",
         "view_less": "Ver menos",
         "error_code_label": "Código %{code}",
-        "maintentance_message": "Nos encontramos en mantenimiento"
+        "maintentance_message": "Nos encontramos en mantenimiento",
+        "hasConnection": "Se ha restablecido la conexion",
+        "lostConnection": "No tienes conexion a internet"
     },
     "auth": {
         "landing_screen": {
