@@ -14,6 +14,10 @@ import { NativeBaseProvider } from 'native-base';
 import { useNetInfo } from '@react-native-community/netinfo';
 import { BannerConnection } from './src/components/organisms';
 
+// Redux Toolkit
+import { store } from './src/redux/stores/store';
+import { Provider } from 'react-redux';
+
 const LOCALIZATION_EVENT = 'change';
 
 function App(): JSX.Element {
@@ -32,12 +36,14 @@ function App(): JSX.Element {
   }, []);
 
   return (
-    <NativeBaseProvider>
-      <>
-        {!isConnected && <BannerConnection />}
-        <RootNavigator />
-      </>
-    </NativeBaseProvider>
+    <Provider store={store}>
+      <NativeBaseProvider>
+        <>
+          {!isConnected && <BannerConnection />}
+          <RootNavigator />
+        </>
+      </NativeBaseProvider>
+    </Provider>
   );
 }
 

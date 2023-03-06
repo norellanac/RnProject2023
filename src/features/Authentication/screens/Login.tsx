@@ -13,11 +13,14 @@ import {
 } from 'native-base';
 import React from 'react';
 import { translate } from '../../../helpers/i18n';
+import { useGetPokemonByNameQuery } from '../../../services/pokemonApi';
 import { AuthStackParams } from './AuthStack';
 
 interface Props extends StackScreenProps<AuthStackParams, 'Login'> {}
 
 export const Login = ({route, navigation}: Props) => {
+  const { data, error, isLoading } = useGetPokemonByNameQuery('bulbasaur');
+  console.error('***useGetPokemonByNameQuery**', data?.name, error, isLoading);
   return (
     <Center w="100%" alignItems="center" justifyContent="center" flex={1}>
       <Box safeArea p="2" py="8" w="90%" maxW="290">
